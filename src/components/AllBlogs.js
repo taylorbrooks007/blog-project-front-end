@@ -1,9 +1,32 @@
 // home page & index of all blogs
 // Titles should link to individual blog page to view details
-export default function AllBlogs() {
+import axios from "axios";
+import "./AllBlogs.css";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import SingleBlog from "./SingleBlog";
+
+export default function AllBlogs(blog) {
+  const API = process.env.REACT_APP_API_URL;
+  const [blogs, setBlogs] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${API}/blogs`)
+      .then((response) => setBlogs(response.data))
+      .catch((e) => console.error("catch", e));
+  }, []);
+
   return (
-    <div className="card">
-      <h3>Title</h3>
+    <div>
+      <section className="cards">
+        {blogs
+          ? blogs.map((blog) => {
+              return <SingleBlog blog={blog} key={blog.id} />;
+            })
+          : null}
+      </section>
+      <Link className="blog" to={`/blogs/${blogs.id}`} />
       <img></img>
     </div>
   );
