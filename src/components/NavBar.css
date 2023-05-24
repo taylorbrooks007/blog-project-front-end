@@ -1,5 +1,8 @@
 h1{
     text-align: center;
     background-color: rgb(135, 138, 222);
-
+}
+button{
+    display: grid;
+    grid-template-columns: 1fr;
 }

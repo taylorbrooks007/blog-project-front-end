@@ -1,5 +1,6 @@
 // home page & index of all blogs
 // Titles should link to individual blog page to view details
+
 import axios from "axios";
 import "./AllBlogs.css";
 import { useState, useEffect } from "react";
@@ -12,8 +13,10 @@ export default function AllBlogs(blog) {
 
   useEffect(() => {
     axios
-      .get(`${API}/blogs`)
-      .then((response) => setBlogs(response.data))
+      .get(`${API}/blogs`) // tells where in the back end to look
+      .then((response) => {
+        setBlogs(response.data);
+      })
       .catch((e) => console.error("catch", e));
   }, []);
 
@@ -26,8 +29,6 @@ export default function AllBlogs(blog) {
             })
           : null}
       </section>
-      <Link className="blog" to={`/blogs/${blogs.id}`} />
-      <img></img>
     </div>
   );
 }
