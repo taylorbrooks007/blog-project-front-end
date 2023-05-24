@@ -36,7 +36,7 @@ export default function SingleBlog({ blog, id }) {
     <div className="card">
       <main>
         <Link to={`/blogs/${blog.id}`} />
-        <h2>{blog.Title}</h2>
+        <h2>{blog.title}</h2>
         <img src={`${blog.img_url}`} alt="image_url" />
         <Link to={`/blogs/${id}/edit`}>
           <button onClick={updateBlog}>Edit</button>
